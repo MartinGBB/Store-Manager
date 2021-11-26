@@ -34,7 +34,7 @@ const INVALID_TYPE_OF_QUANTITY = {
 
 const ID_NOT_EXIST = {
   error: {
-    status: 422,
+    status: StatusCodes.UNPROCESSABLE_ENTITY,
     code: 'invalid_data',
     message: 'Wrong id format',
   },
@@ -42,11 +42,19 @@ const ID_NOT_EXIST = {
 
 const QUANTITY_SALES = {
   error: {
-    status: 422,
+    status: StatusCodes.UNPROCESSABLE_ENTITY,
     code: 'invalid_data',
     message: 'Wrong product ID or invalid quantity',
   },
 };
+
+ const INVALID_ID = {
+  error: {
+    status: StatusCodes.NOT_FOUND,
+    code: 'not_found',
+    message: 'Sale not found',
+  },
+ };
 
 module.exports = {
   EXISTING_PRODUCT,
@@ -55,4 +63,5 @@ module.exports = {
   INVALID_TYPE_OF_QUANTITY,
   ID_NOT_EXIST,
   QUANTITY_SALES,
+  INVALID_ID,
 };

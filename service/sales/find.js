@@ -1,7 +1,7 @@
 const Sales = require('../../model/document')('sales');
 
 const find = async () => {
-  const sales = Sales.find();
+  const sales = await Sales.find();
   return sales;
 };
 

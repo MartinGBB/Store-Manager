@@ -44,6 +44,11 @@ const invalidQuantity = async (productQuantity) => {
   return filter.length >= 1 ? err.QUANTITY_SALES : true;
 };
 
+const validIdSales = async (sales) => {
+  if (!sales) return err.INVALID_ID;
+  return true;
+};
+
 module.exports = {
   existingProduct,
   nameLength,
@@ -51,6 +56,6 @@ module.exports = {
   typeOfQuantity,
   // findById
   findFail,
-
   invalidQuantity,
+  validIdSales,
 };

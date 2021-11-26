@@ -1,11 +1,15 @@
 const { StatusCodes } = require('http-status-codes');
-// const service = require('../../service/sales');
+const service = require('../../service/sales');
 
 module.exports = async (req, res, next) => {
   try {
-    // const { id } = req.params;
-    //  res.status(status).json({ err: { message, status, code } }); 
-    return res.status(StatusCodes.NOT_IMPLEMENTED).send();
+    const { id } = req.params;
+    const sales = await service.findById(id);
+    if (sales.error) {
+      const { error: { status, message, code } } = sales;
+      res.status(status).json({ err: { code, message } }); 
+    }
+    return res.status(StatusCodes.OK).json({ sales });
   } catch (err) {
     next(err);
   }
