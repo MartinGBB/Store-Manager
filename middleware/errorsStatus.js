@@ -40,10 +40,19 @@ const ID_NOT_EXIST = {
   },
 };
 
+const QUANTITY_SALES = {
+  error: {
+    status: 422,
+    code: 'invalid_data',
+    message: 'Wrong product ID or invalid quantity',
+  },
+};
+
 module.exports = {
   EXISTING_PRODUCT,
   NAME_LENGTH,
   INVALID_QUANTITY,
   INVALID_TYPE_OF_QUANTITY,
   ID_NOT_EXIST,
+  QUANTITY_SALES,
 };

@@ -1,5 +1,6 @@
-// const newError = require('..');
 const err = require('../errorsStatus');
+
+const QUANTITY_MIN_LENGTH = 1;
 
 const existingProduct = async (productName) => {
   if (productName) return err.EXISTING_PRODUCT;
@@ -15,7 +16,6 @@ const nameLength = async (name) => {
 };
 
 const minQuantity = async (quantity) => {
-  const QUANTITY_MIN_LENGTH = 1;
   if (quantity < QUANTITY_MIN_LENGTH) return err.INVALID_QUANTITY;
   return true;
 };
@@ -33,6 +33,17 @@ const findFail = async (product) => {
   return true;
 };
 
+// sales
+const invalidQuantity = async (productQuantity) => {
+  const listSales = await productQuantity.map(({ quantity }) => {
+    if (quantity < QUANTITY_MIN_LENGTH || typeof quantity !== 'number') return false;
+    return true;
+  });
+
+  const filter = listSales.filter((list) => list === false);
+  return filter.length >= 1 ? err.QUANTITY_SALES : true;
+};
+
 module.exports = {
   existingProduct,
   nameLength,
@@ -40,4 +51,6 @@ module.exports = {
   typeOfQuantity,
   // findById
   findFail,
+
+  invalidQuantity,
 };
