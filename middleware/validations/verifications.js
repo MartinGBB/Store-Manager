@@ -49,8 +49,8 @@ const validIdSales = async (sales) => {
   return true;
 };
 
-const salesQuantity = async (quantity) => {
-  if (quantity < QUANTITY_MIN_LENGTH || typeof quantity !== 'number') return err.QUANTITY_SALES;
+const deleteId = async (sales) => {
+  if (!sales) return err.INVALID_ID_FORMAT;
   return true;
 };
 
@@ -63,5 +63,5 @@ module.exports = {
   findFail,
   invalidQuantity,
   validIdSales,
-  salesQuantity,
+  deleteId,
 };

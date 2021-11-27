@@ -56,6 +56,14 @@ const QUANTITY_SALES = {
   },
  };
 
+ const INVALID_ID_FORMAT = {
+  error: {
+    status: StatusCodes.UNPROCESSABLE_ENTITY,
+    code: 'invalid_data',
+    message: 'Wrong sale ID format',
+  },
+ };
+
 module.exports = {
   EXISTING_PRODUCT,
   NAME_LENGTH,
@@ -64,4 +72,5 @@ module.exports = {
   ID_NOT_EXIST,
   QUANTITY_SALES,
   INVALID_ID,
+  INVALID_ID_FORMAT,
 };

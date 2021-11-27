@@ -8,7 +8,6 @@ const validQuantity = async (quantity) => {
 
 const create = async (itensSold) => {
   const quantity = await validQuantity(itensSold);
-  
   if (quantity.error) return quantity;
   const salesProduct = await Sales.create({ itensSold });
   

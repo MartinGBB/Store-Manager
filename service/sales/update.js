@@ -1,17 +1,18 @@
 const Sales = require('../../model/document')('sales');
 const Validation = require('../../middleware/validations/verifications');
 
-const validateQuantity = async (quantity) => {
-  const validate = await Validation.salesQuantity(quantity);
+const validateQuantity = async (sales) => {
+  const validate = await Validation.invalidQuantity(sales);
   return validate;
 };
 
-const update = async (itensSold) => {
-  const sales = await Sales.update({ itensSold });
-  const validate = await validateQuantity(itensSold.quantity);
-  console.log(validate);
+const update = async (itensSold, id) => {
+  const sales = { itensSold, _id: id };
+  
+  const validate = await validateQuantity(itensSold);
   if (validate.error) return validate;
-  return sales;
+  const updateSales = await Sales.update(sales);
+  return updateSales;
 };
 
 module.exports = update;

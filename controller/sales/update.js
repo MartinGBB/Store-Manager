@@ -4,10 +4,10 @@ const service = require('../../service/sales');
 module.exports = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { productId, quantity } = req.body;
-    const updateSales = { id, productId, quantity };
+    // const { productId, quantity } = req.body;
+    const updateSales = req.body;
 
-    const itensSold = await service.update(updateSales);
+    const itensSold = await service.update(updateSales, id);
 
     if (itensSold.error) {
       const { error: { status, message, code } } = itensSold;
