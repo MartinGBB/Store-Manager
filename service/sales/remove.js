@@ -4,10 +4,7 @@ const Sales = require('../../model/document')('sales');
 const Validation = require('../../middleware/validations/verifications');
 
 const existId = async (id) => {
-  console.log('id', id);
-
   const findId = await Sales.findById(id);
-  console.log('q', findId);
   const validate = await Validation.deleteId(findId);
   return validate;
 };
